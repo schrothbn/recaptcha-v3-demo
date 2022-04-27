@@ -1,6 +1,7 @@
 package com.example.recaptchademo.controllers;
 
 import com.example.recaptchademo.model.ContactForm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,9 +13,12 @@ import javax.validation.Valid;
 
 @Controller
 public class ContactController {
+    @Value("${recaptcha.site_key}")
+    private String captchaSiteKey;
     @GetMapping("/contact")
     public String renderContact(Model model) {
         model.addAttribute("form", new ContactForm());
+        model.addAttribute("captchaSiteKey", captchaSiteKey);
         return "contact";
     }
 
@@ -23,6 +27,7 @@ public class ContactController {
                                  final BindingResult result,
                                  Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("captchaSiteKey", captchaSiteKey);
             model.addAttribute("form", form);
             return "contact";
         }
