@@ -10,7 +10,8 @@ import javax.validation.constraints.NotBlank;
 public class ContactForm {
     @NotBlank(message = "Please enter a name")
     private String name;
-    @Email(message = "Please enter a valid e-mail address")
+    @NotBlank(message = "Please enter an e-mail address")
+    @Email(message = "Please enter an valid e-mail address")
     private String email;
     private String subject;
     @NotBlank(message = "Please enter a message")
