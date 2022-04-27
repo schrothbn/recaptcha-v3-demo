@@ -1,5 +1,7 @@
 package com.example.recaptchademo.model;
 
+import com.example.recaptchademo.constraints.CaptchaValid;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -16,6 +18,7 @@ public class ContactForm {
     private String subject;
     @NotBlank(message = "Please enter a message")
     private String message;
+    @CaptchaValid
     private String recaptchaToken;
     // Getter and Setter
     public String getName() {
